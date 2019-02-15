@@ -1,7 +1,7 @@
 def modules = [
-	"greeter-libary"
-	, "greeter-spring-boot-autoconfigure"
-	, "greeter-spring-boot-starter"
+	'greeter-library'
+	, 'greeter-spring-boot-autoconfigure'
+	, 'greeter-spring-boot-starter'
 ]
 
 modules.each { it -> 
@@ -10,4 +10,4 @@ modules.each { it ->
 	project(":${it}").buildFileName = "${it}.gradle"
 }
 
-rootProject.name="spring-boot-starter-custom"
+rootProject.name = 'spring-boot-starter-custom'

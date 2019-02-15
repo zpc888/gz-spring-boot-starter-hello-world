@@ -1,15 +1,17 @@
 plugins {
     id 'org.springframework.boot' version "2.1.2.RELEASE"
-	id 'java'
 }
 
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
 
 allprojects {
 	group = 'gz.poc'
 	version = '0.0.1-SNAPSHOT'
+
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'eclipse'
+
 	sourceCompatibility = '1.8'
 
 	repositories {
@@ -22,7 +24,7 @@ allprojects {
 	}
 }
 
-project(':greeter-libary') {
+project(':greeter-library') {
     dependencies {
 	}
 }
@@ -32,7 +34,7 @@ project(':greeter-spring-boot-autoconfigure') {
 		compile("org.springframework.boot:spring-boot:${springBootVersion}")
 		compile("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
 		compile("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
-		compile project(':greeter-libary')
+		compile project(':greeter-library')
 
 		testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 	}
@@ -49,3 +51,4 @@ dependencies {
 	compile project(':greeter-spring-boot-starter')
 	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }
+

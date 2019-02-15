@@ -1,0 +1,13 @@
+def modules = [
+	"greeter-libary"
+	, "greeter-spring-boot-autoconfigure"
+	, "greeter-spring-boot-starter"
+]
+
+modules.each { it -> 
+	include it
+	project(":${it}").projectDir = file("${it}")
+	project(":${it}").buildFileName = "${it}.gradle"
+}
+
+rootProject.name="spring-boot-starter-custom"

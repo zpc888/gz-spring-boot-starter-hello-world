@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version "2.1.2.RELEASE"
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+allprojects {
+	group = 'gz.poc'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = '1.8'
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		compileOnly 'org.projectlombok:lombok:1.18.6'
+		annotationProcessor 'org.projectlombok:lombok:1.18.6'
+	}
+}
+
+project(':greeter-libary') {
+    dependencies {
+	}
+}
+
+project(':greeter-spring-boot-autoconfigure') {
+    dependencies {
+		compile("org.springframework.boot:spring-boot:${springBootVersion}")
+		compile("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
+		compile("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+		compile project(':greeter-libary')
+
+		testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+	}
+}
+
+project(':greeter-spring-boot-starter') {
+    dependencies {
+		compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
+		compile project(':greeter-spring-boot-autoconfigure')
+	}
+}
+
+dependencies {
+	compile project(':greeter-spring-boot-starter')
+	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+}
